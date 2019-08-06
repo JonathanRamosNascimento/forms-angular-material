@@ -24,13 +24,15 @@ export class TemplateDrivenFormComponent implements OnInit {
     firstName: "", lastName: "", birth: new Date(), gender: "", street: "", city: "", state: "", phone1: "", phone2: ""
   };
 
+  states = ['SP', 'PR', 'SC', 'RS', 'PA', 'RO', 'MA'];
+
   constructor() { }
 
   ngOnInit() {
   }
 
   onSubmit() {
-    
+    console.log(this.client);
   }
 
 }
