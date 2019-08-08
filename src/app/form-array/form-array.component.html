@@ -38,8 +38,9 @@
                         <h4>Telephones: </h4>
                     </div>
 
-                    <div formArrayName="phones" fxFlex="100" fxLayout="row wrap" fxLayoutAlign="start start" fxLayoutGap="20px">
-                        <mat-form-field fxFlex="30" *ngFor="let c of phones.controls let i=index">
+                    <div formArrayName="phones" fxFlex="100" fxLayout="row wrap" fxLayoutAlign="start start"
+                        fxLayoutGap="20px">
+                        <mat-form-field fxFlex="30" *ngFor="let c of phones.controls; let i=index">
                             <input matInput type="text" placeholder="Telephone" [formControlName]="i">
                         </mat-form-field>
                         <button mat-button type="button" color="primary" (click)="addPhone()">
@@ -49,17 +50,22 @@
 
                     <div fxFlex="100" fxLayoutAlign="begin">
                         <h4>Children: </h4>
+                        <button mat-button type="button" color="primary" (click)="addChild()">
+                            <mat-icon>add</mat-icon>
+                        </button>
                     </div>
 
-                    <div fxFlex="100" fxLayout="column" fxLayoutAlign="space-between start">
-                        <div fxFlex="100" fxLayout="row" fxLayoutAlign="space-between begin" formGroupName="children">
-                            <mat-form-field fxFlex="75">
-                                <input matInput type="text" placeholder="Name" formControlName="name">
-                            </mat-form-field>
-                            <mat-form-field fxFlex="20">
-                                <input matInput type="text" placeholder="Age" formControlName="age">
-                            </mat-form-field>
-                        </div>
+                    <div fxFlex="100" fxLayout="column" fxLayoutAlign="space-between start" formArrayName="children">
+                        <ng-container *ngFor="let c of children.controls; let i=index">
+                            <div fxFlex="100" fxLayout="row" fxLayoutAlign="space-between begin" [formGroupName]="i">
+                                <mat-form-field fxFlex="75">
+                                    <input matInput type="text" placeholder="Name" formControlName="name">
+                                </mat-form-field>
+                                <mat-form-field fxFlex="20">
+                                    <input matInput type="text" placeholder="Age" formControlName="age">
+                                </mat-form-field>
+                            </div>
+                        </ng-container>
                     </div>
 
                     <button mat-button color="primary" type="submit">
