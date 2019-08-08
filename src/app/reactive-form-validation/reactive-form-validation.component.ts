@@ -10,7 +10,7 @@ export class ReactiveFormValidationComponent implements OnInit {
 
   clientForm = this.fb.group({
     firstName: ['', [Validators.required, Validators.minLength(5)]],
-    lastName: [''],
+    lastName: ['', [Validators.required]],
     birth: [new Date(), [Validators.required]],
     age: [0, [Validators.required, Validators.max(150), Validators.min(0)]],
     email: ['', [Validators.required, Validators.email]],
@@ -24,6 +24,10 @@ export class ReactiveFormValidationComponent implements OnInit {
   constructor(private fb: FormBuilder) { }
 
   ngOnInit() {
+  }
+
+  submit() {
+    console.log(this.clientForm.value);
   }
 
 }

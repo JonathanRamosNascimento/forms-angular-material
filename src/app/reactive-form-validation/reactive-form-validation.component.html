@@ -14,9 +14,20 @@
                     <div fxFlex="100" fxLayout="row" fxLayoutAlign="space-between  start">
                         <mat-form-field fxFlex="45">
                             <input matInput type="text" formControlName="firstName" placeholder="First Name">
+                            <mat-error *ngIf="clientForm.controls.firstName.hasError('required')">
+                                Plesa enter the first name
+                            </mat-error>
+                            <mat-error *ngIf="clientForm.controls.firstName.hasError('minlength')">
+                                First name must be {{clientForm.controls.firstName.errors.minlength.requiredLength}} or
+                                more
+                                characters. Actual: {{clientForm.controls.firstName.errors.minlength.actualLength}}
+                            </mat-error>
                         </mat-form-field>
                         <mat-form-field fxFlex="45">
                             <input matInput type="text" formControlName="lastName" placeholder="Last Name">
+                            <mat-error *ngIf="clientForm.controls.lastName.hasError('required')">
+                                Plesa enter the last name date
+                            </mat-error>
                         </mat-form-field>
                     </div>
 
@@ -26,14 +37,32 @@
                                 placeholder="Date of Birth">
                             <mat-datepicker-toggle matSuffix [for]="dtbirth"></mat-datepicker-toggle>
                             <mat-datepicker #dtbirth></mat-datepicker>
+                            <mat-error *ngIf="clientForm.controls.birth.hasError('required')">
+                                Plesa enter the birth
+                            </mat-error>
                         </mat-form-field>
 
                         <mat-form-field fxFlex="50">
                             <input matInput formControlName="email" placeholder="Enter your email" type="email">
+                            <mat-error *ngIf="clientForm.controls.email.hasError('required')">
+                                Plesa enter the email
+                            </mat-error>
+                            <mat-error *ngIf="clientForm.controls.email.hasError('email')">
+                                Plesa enter a valid email
+                            </mat-error>
                         </mat-form-field>
 
                         <mat-form-field fxFlex="20">
                             <input matInput formControlName="age" placeholder="Age" type="number">
+                            <mat-error *ngIf="clientForm.controls.age.hasError('required')">
+                                Plesa enter the age
+                            </mat-error>
+                            <mat-error *ngIf="clientForm.controls.age.hasError('max')">
+                                please enter at the age of 150 or less
+                            </mat-error>
+                            <mat-error *ngIf="clientForm.controls.age.hasError('min')">
+                                please enter age 0 or greater
+                            </mat-error>
                         </mat-form-field>
                     </div>
 
@@ -43,9 +72,15 @@
                     <div fxFlex="100" fxLayout="row" fxLayoutAlign="space-between start">
                         <mat-form-field fxFlex="40">
                             <input matInput type="text" formControlName="street" placeholder="Street">
+                            <mat-error *ngIf="clientForm.controls.street.hasError('required')">
+                                Plesa enter the street
+                            </mat-error>
                         </mat-form-field>
                         <mat-form-field fxFlex="30">
                             <input matInput type="text" formControlName="city" placeholder="City">
+                            <mat-error *ngIf="clientForm.controls.city.hasError('required')">
+                                Plesa enter the city
+                            </mat-error>
                         </mat-form-field>
 
                         <mat-form-field fxFlex="20">
@@ -54,6 +89,9 @@
                                     {{s}}
                                 </mat-option>
                             </mat-select>
+                            <mat-error *ngIf="clientForm.controls.state.hasError('required')">
+                                Plesa enter the state
+                            </mat-error>
                         </mat-form-field>
                     </div>
 
@@ -64,13 +102,19 @@
                     <div fxFlex="100" fxLayout="row wrap" fxLayoutAlign="space-between start" fxLayoutGap="20px">
                         <mat-form-field fxFlex="45">
                             <input matInput type="text" formControlName="phone1" placeholder="Telephone 1 ">
+                            <mat-error *ngIf="clientForm.controls.phone1.hasError('required')">
+                                Plesa enter the phone1
+                            </mat-error>
                         </mat-form-field>
                         <mat-form-field fxFlex="45">
                             <input matInput type="text" formControlName="phone2" placeholder="Telephone 2">
+                            <mat-error *ngIf="clientForm.controls.phone2.hasError('required')">
+                                Plesa enter the phone2
+                            </mat-error>
                         </mat-form-field>
                     </div>
 
-                    <button mat-button color="primary" type="submit" [disabled]="!clientForm.valid">
+                    <button mat-button color="primary" type="submit" [disabled]="!clientForm.valid" (click)="submit()">
                         <mat-icon>done</mat-icon>Submit
                     </button>
 
